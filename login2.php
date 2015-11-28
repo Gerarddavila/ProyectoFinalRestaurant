@@ -30,7 +30,7 @@
                     	<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
-              </button>
+             </button>
                 <a class="navbar-brand" href="#"><img src="images/logo72.png" alt="Inicio"></a>
             </div>
               
@@ -39,9 +39,6 @@
                     <li><a class="color_animation" href="cerrarsesion.php">Pagina Principal</a></li>
                 </ul>
             </div>
-            <!--Agrupar los enalaces en navegacion, que se puedan ocultar al minimizar la barra-->
-   <div class="collapse navbar-collapse" id="bs-example-navbar-ccolor_animationollapse-1">
-                <ul class="nav navbar-nav main-nav  clear navbar-right ">
                 
                   
                    
@@ -51,14 +48,12 @@
         </div><!-- /.container-fluid -->
     </nav></br></br></br></br>
     
-    
-
 <div class="container-fluid col-lg-offset-3">
    <div class="row">
     <div class="col-md-7">
 
 <!--Inicio formulario -->
-<form action = "usuarioconexion.php" method="POST" class="form-horizontal login ">
+<form action = "clienteconexion.php" method="POST" class="form-horizontal login ">
 
    <fieldset>
    	<legend>Iniciar Sesion</legend>
@@ -86,7 +81,6 @@
     </div>
     </div>
     </div>
-
   <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
     <script type="text/javascript" src="js/bootstrap.min.js" ></script>
     <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
@@ -130,4 +124,3 @@
     </script>
 </body>
 </html>
-  

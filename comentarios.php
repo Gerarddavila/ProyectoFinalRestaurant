@@ -7,20 +7,14 @@
 
 
 
-	$Conexion = mysql_connect('localhost','root','paginasweb2015');
-	mysql_select_db('a7150759_Paginas', $Conexion);
+  	 $con = mysqli_connect('mysql.hostinger.es', 'u365468925_proye', 'paginasweb2015', 'u365468925_proye');
 
 		
 	$query = "INSERT INTO comentarios (cliente, email, motivo, mensaje) 
 	VALUES ('$vNombre','$vEmail','$vMotivo','$vMjs')";
 
-	if (mysql_query($query)) 
-		echo "Datos Insertados";
-	else
-		echo "NO se pudo insertar";
-
-
-	echo $query;
+	mysqli_query($con,$query);
+		
  ?>
 
  

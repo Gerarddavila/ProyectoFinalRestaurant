@@ -1,8 +1,8 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="UTF-8">
+ <meta charset="UTF-8">
     <title>Restaurant</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css" media="screen" type="text/css">
@@ -35,9 +35,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav main-nav   ">
-                    <li><a class="color_animation" href="intereses.php">Comentarios</a></li>
+                    <li><a class="color_animation" href="comentario.php">Comentarios</a></li>
                     <li><a class="color_animation" href="detalles.php">Reservaciones</a></li>
                     <li><a class="color_animation" href="empleados.php">Empleados</a></li>
+                    <li><a class="color_animation" href="clientes.php">Clientes</a></li>
+                    <li><a class="color_animation" href="empleado.php">Registrar Empleados</a></li>
                 </ul>
 <?php
 if (!isset($_SESSION['valido']))
@@ -64,13 +66,65 @@ else
         <div class="follow_container">
             <div class="starter_follow">
                 <h2 class="top-title"> Los Olivos</h2>
-                <h2 class="white second-title">" Alimentos & Bebidas "</h2>
-                <h2 class="top-title">ADMINISTRADOR</h2>
+                <h2 class="white second-title">" Administrador "</h2>
+                
+                 </div>
+        </div>
+        <div class="direction_container">
+            <div class="direction">
+                <a href="#story"></a>
+            </div>
+        </div>
+    </div>
                 
             </div>
         </div>  
     </div>
- </body>
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
+    <script type="text/javascript" src="js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>      
+    <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('a[href*=#]:not([href=#])').click(function() {
+                if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                      return false;
+                    }
+                }
+            });
+        });
+
+    </script>
+
+
+    <script>
+        $(function() {
+            $( "#datepicker" ).datepicker();
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function(){
+            $('#portfolio').mixitup({
+                targetSelector: '.item',
+                transitionSpeed: 450
+            });
+        });
+    </script>
+</body>
+</html>
+  
+</body>
 </html>
 <?php
 }

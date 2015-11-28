@@ -42,12 +42,12 @@
                 </ul>
                  <?php
      if (!isset($_SESSION['valido']))
-        $_SESSION['valido']=0;
+        $_SESSION['valido']=1;
 
     if($_SESSION['valido']==0){
     echo "<div align='center'>";            
         echo "<img class='img-responsive' src='images/logo72.png' alt='restringido'>";
-        echo "<a class='btn btn-warning' href='index.php'>Login</a>";
+        echo "<a class='btn btn-warning' href='index.html'>Login</a>";
     echo "</div>";
     }
 else
@@ -72,36 +72,43 @@ else
       <table class="table table-hover table-responsive">
      <thead>
         <tr class="success">
-          <th>Cliente</th>
-          <th>Apellidos</th>
-          <th>Direccion</th>
-          <th>Telefono</th>
-           <th>Telefono Opcional</th>
+          <th>No</th>
+          <th>Persona Reservacion</th>
           <th>Fecha Reservacion</th>
-          <th>Email</th>
+          <th>Categoria</th>
+          <th>Numero de Personas</th>
+         
            </tr>
       </thead>
     <tbody>
                             
-<?php
-$con = mysqli_connect('mysql.hostinger.es', 'u365468925_proye', 'paginasweb2015', 'u365468925_proye');
+         <?php
+                        include_once "conexion.php";
 
-$query="SELECT * FROM clientes";
+                      $con = mysqli_connect('mysql.hostinger.es', 'u365468925_proye', 'paginasweb2015', 'u365468925_proye');
+                      $query="SELECT * FROM reservaciones";
 
-  $record = mysql_query($query);
+  $record = mysqli_query($con,$query);
 
-  while ($dato = mysql_fetch_array($record)) {   
-                                
-                                   echo "<tr><td>".$row['Nombre_Cliente']."</td>
-                                                  <td>".$row['Apellido_Cliente']."</td>
-                                                  <td>".$row['Direccion_Cliente']."</td>
-                                                  <td>".$row['Telefono_Cliente']."</td>
-                                                  <td>".$row['otro_telefono']."</td>
-                                                   <td>".$row['fecha_reserv']."</td>
-                                                  <td>".$row['email']."</td><br>"; 
-                                    echo "<tr>";
-                              }
-                            }
+ if($row= mysqli_fetch_array($record))
+ {
+   
+    do {
+                               
+                                       echo "<tr><td>".$row['idReservaciones']."</td>
+                                                  <td>".$row['nom_reservacion']."</td>
+                                                  <td>".$row['Fecha_Reservacion']."</td>
+                                                  <td>".$row['categoria']."</td>
+                                                  <td>".$row['No_personas']."</td>
+                                                          </tr> \n";
+    }
+                                 
+
+    while ($row = mysqli_fetch_array($record));
+    echo "</table> \n";
+  }
+
+
 ?>
                         </tbody>    
                     </table>
@@ -109,5 +116,49 @@ $query="SELECT * FROM clientes";
             </div>
             <div class="clearfix visible-lg"></div>
         </div >
-    </body>
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
+    <script type="text/javascript" src="js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>      
+    <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('a[href*=#]:not([href=#])').click(function() {
+                if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                      return false;
+                    }
+                }
+            });
+        });
+
+    </script>
+
+
+    <script>
+        $(function() {
+            $( "#datepicker" ).datepicker();
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function(){
+            $('#portfolio').mixitup({
+                targetSelector: '.item',
+                transitionSpeed: 450
+            });
+        });
+    </script>
+</body>
 </html>
+<?php
+}
+?>

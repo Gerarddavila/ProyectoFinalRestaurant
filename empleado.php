@@ -69,58 +69,51 @@
                     <table class="table table-hover table-responsive">
                          <tbody>
                             </br></br></br></br>
-                            <div class="container-fluid">
-   <div class="row">
-    <div class="col-md-5">
-      <table class="table table-hover table-responsive">
-     <thead>
-        <tr class="success">
-          <th>Nombre</th>
-           <th>Apellidos</th>
-           <th>Direccion</th>
-          <th>Telefono</th>
-          <th>Cargo</th>
-         <th>Usuario</th>
-          <th>Contraseña</th>
-           </tr>
-      </thead>
-    <tbody>
-                            
-                            <?php
-                        include_once "conexion.php";
-                        $con = mysqli_connect('mysql.hostinger.es', 'u365468925_proye', 'paginasweb2015', 'u365468925_proye');
-                      $query="SELECT * FROM empleados";
-                     
-
-  $record = mysqli_query($con,$query);
-
- if($row= mysqli_fetch_array($record))
- {
    
-    do {
-      echo "<tr><td>".$row['Nombre_Empleado']."</td>
-                <td>".$row['Apellido_Empleado']."</td>
-                <td>".$row['Direccion_Empleado']."</td>
-                <td>".$row['Telefono']."</td>
-                <td>".$row['Cargo']."</td>
-                <td>".$row['usuario']."</td>
-                <td>".$row['password']."</td>
-            </tr> \n";
-    }
-    while ($row = mysqli_fetch_array($record));
-    echo "</table> \n";
-  }
+
+    <section class="description_content">
+        <div class="limit">
+            <div class="inner contact">
+                <!-- Form Area -->
+                <div class="contact-form">
+                    <!-- Form -->
+                    <form action="emp.php"  method="POST" >
+                        <!-- Left Inputs -->
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-6 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-xs-6">
+                                            <!-- Name -->
+                                            <input type="text" name="nombre"   class="form" placeholder="Nombre" />
+                                            <input type="text" name="apellido"   class="form" placeholder="Apellido" />
+                                            <input type="text" name="telefono" id="state" required="required" class="form" placeholder="Telefono" />
+                                            <input type="text" name="ciudad" id="guest
+                                            " required="required" class="form" placeholder="Direccion" />
+                                            </div>
+
+                                        <div class="col-lg-6 col-md-6 col-xs-6">
+                                            <!-- Name -->
+                                            
+                                            <input type="text" name="cargo" id="guest" required="required" class="form" placeholder="Cargo" />
+                                            
+                                            <input type="text" name="usuario" id="subject" required="required" class="form" placeholder="Usuario" />
+                                            <input type="password" name="password" id="password" required="required" class="form" placeholder="Contraseña" />
+                                        </div>
+
+                                        <div class="col-xs-12">
+                                            <!-- Send Button -->
+                                            <button type="submit" id="submit" name="submit" class=" form-btn form-btn1 semibold">Registrarse</button> 
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                             
 
 
-?>
-
-                        </tbody>    
-                    </table>
-                </div>
-            </div>
-            <div class="clearfix visible-lg"></div>
-        </div >
-  <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
     <script type="text/javascript" src="js/bootstrap.min.js" ></script>
     <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
@@ -163,9 +156,6 @@
     </script>
 </body>
 </html>
-  
-</body>
-</html>
-<?php
+  <?php
 }
 ?>

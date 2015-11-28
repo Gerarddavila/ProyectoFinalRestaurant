@@ -3,30 +3,26 @@
 	$vNombre=$_POST['nombre'];
 	$vApellido=$_POST['apellido'];
 	$vCiudad=$_POST['ciudad'];
-	$vFecha=$_POST['fecha'];
 	$vTel=$_POST['telefono'];
 	$vTel2=$_POST['telefono2'];
 	$vEmail=$_POST['email'];
-	$vMotivo=$_POST['motivo'];
+	$vUsua=$_POST['usuario'];
+	$vPass=$_POST['password'];
 
 
 
- $Conexion = mysql_connect('mysql.hostinger.es','u365468925_proye','paginasweb2015');
-  mysql_select_db('u365468925_proye', $Conexion);
+ $Conexion = mysql_connect('localhost','root','MARIACRISTINA');
+  mysql_select_db('PaginasBD', $Conexion);
  
  
 
 		
-	$query = "INSERT INTO clientes (Nombre_Cliente, Apellido_Cliente, Direccion_Cliente, Telefono_Cliente,fecha_reserv,otro_telefono,email,Motivo) 
-	VALUES ('$vNombre','$vApellido','$vCiudad','$vTel','$vFecha','$vTel2','$vEmail','$vMotivo')";
+	$query = "INSERT INTO clientes (Nombre_Cliente, Apellido_Cliente,Direccion_Cliente,Telefono_Cliente,otro_telefono,usuario,email,password) 
+	VALUES ('$vNombre','$vApellido','$vCiudad','$vTel','$vTel2','$vUsua','$vEmail','$vPass')";
 
 	if (mysql_query($query)) 
-		echo "Datos Insertados";
-	else
-		echo "NO se pudo insertar";
-
-
-	echo $query;
+		
+	
  ?>
 
  

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 
@@ -14,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link rel="icon" href="favicon-1.ico" type="image/x-icon">
+
 </head>
 
 <body>
@@ -38,9 +40,6 @@
                    
                 </ul>
                  <?php
-    session_start();
-   
-
     if (!isset($_SESSION['userid']))
         $_SESSION['userid']=1;
 
@@ -71,26 +70,24 @@
                             </br></br></br></br>
                             <div class="container-fluid">
    <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-5 ">
       <table class="table table-hover table-responsive">
      <thead>
         <tr class="success">
-          <th>Nombre</th>
-           <th>Apellidos</th>
-           <th>Direccion</th>
-          <th>Telefono</th>
-          <th>Cargo</th>
-         <th>Usuario</th>
-          <th>Contraseña</th>
+          <th>Cliente</th>
+          <th>Email</th>
+          <th>Motivo</th>
+          <th>Mensaje</th>
            </tr>
       </thead>
     <tbody>
                             
-                            <?php
+ <?php
                         include_once "conexion.php";
-                        $con = mysqli_connect('mysql.hostinger.es', 'u365468925_proye', 'paginasweb2015', 'u365468925_proye');
-                      $query="SELECT * FROM empleados";
-                     
+
+                         $con = mysqli_connect('mysql.hostinger.es', 'u365468925_proye', 'paginasweb2015', 'u365468925_proye');
+
+                      $query="SELECT * FROM comentarios";
 
   $record = mysqli_query($con,$query);
 
@@ -98,13 +95,10 @@
  {
    
     do {
-      echo "<tr><td>".$row['Nombre_Empleado']."</td>
-                <td>".$row['Apellido_Empleado']."</td>
-                <td>".$row['Direccion_Empleado']."</td>
-                <td>".$row['Telefono']."</td>
-                <td>".$row['Cargo']."</td>
-                <td>".$row['usuario']."</td>
-                <td>".$row['password']."</td>
+      echo "<tr><td>".$row['cliente']."</td>
+                <td>".$row['email']."</td>
+                <td>".$row['motivo']."</td>
+                <td>".$row['mensaje']."</td>
             </tr> \n";
     }
     while ($row = mysqli_fetch_array($record));
@@ -164,8 +158,6 @@
 </body>
 </html>
   
-</body>
-</html>
 <?php
 }
 ?>

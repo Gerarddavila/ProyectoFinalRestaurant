@@ -1,9 +1,10 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 
  <meta charset="UTF-8">
-    <title>Restaurant</title>
-    <link rel="stylesheet" href="css/normalize.css">
+    <title>Reservaciones</title>
+      <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css" media="screen" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
@@ -34,27 +35,19 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav main-nav   ">
-                    <li><a class="color_animation" href="contenido.php">Inicio</a></li>
-                   
+               
                 </ul>
-                 <?php
-    session_start();
-   
+<?php
+if (!isset($_SESSION['valido']))
+        $_SESSION['valido']=0;
 
-    if (!isset($_SESSION['userid']))
-        $_SESSION['userid']=1;
-
-    if($_SESSION['userid']==0)
-          echo '</br></br></br></br>','<a>Acceso Restringido: </a>';
-    if($_SESSION['userid']==0)
-        echo '<a><img src="images/logo72.png" alt="Inicio"></a>';
-       
-        if($_SESSION['userid']==0)
-        echo '<a href="cerrarsesion.php">  Iniciar Sesion</a>';
-
-       
- 
-    else
+    if($_SESSION['valido']==0){
+    echo "<div align='center'>";            
+        echo "<img class='img-responsive' src='images/logo72.pn' alt='restringido'>";
+        echo "<a class='btn btn-warning' href='index.html'>Login</a>";
+    echo "</div>";
+    }
+else
     {
 ?>
                 <ul class="nav navbar-nav main-nav  clear navbar-right navbar-top">
@@ -63,63 +56,62 @@
             </div>
         </div>
         </nav>
-          <div class="container-fluid">
-            <div class="row">
-                <div class="col-md col-lg-offset-1 ">
-                    <table class="table table-hover table-responsive">
-                         <tbody>
-                            </br></br></br></br>
-                            <div class="container-fluid">
-   <div class="row">
-    <div class="col-md-5">
-      <table class="table table-hover table-responsive">
-     <thead>
-        <tr class="success">
-          <th>Nombre</th>
-           <th>Apellidos</th>
-           <th>Direccion</th>
-          <th>Telefono</th>
-          <th>Cargo</th>
-         <th>Usuario</th>
-          <th>Contraseña</th>
-           </tr>
-      </thead>
-    <tbody>
-                            
-                            <?php
-                        include_once "conexion.php";
-                        $con = mysqli_connect('mysql.hostinger.es', 'u365468925_proye', 'paginasweb2015', 'u365468925_proye');
-                      $query="SELECT * FROM empleados";
-                     
+    
 
-  $record = mysqli_query($con,$query);
+<section class="description_content">
+        <div class="limit">
+            <div class="inner contact">
+                <!-- Form Area -->
+                <div class="contact-form">
+                    <!-- Form -->
+                    <form id="contact-us" method="post" action="savereservar.php">
+                        <!-- Left Inputs -->
 
- if($row= mysqli_fetch_array($record))
- {
-   
-    do {
-      echo "<tr><td>".$row['Nombre_Empleado']."</td>
-                <td>".$row['Apellido_Empleado']."</td>
-                <td>".$row['Direccion_Empleado']."</td>
-                <td>".$row['Telefono']."</td>
-                <td>".$row['Cargo']."</td>
-                <td>".$row['usuario']."</td>
-                <td>".$row['password']."</td>
-            </tr> \n";
-    }
-    while ($row = mysqli_fetch_array($record));
-    echo "</table> \n";
-  }
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-6 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-xs-6">
+                                            <!-- Name -->
+                                            
+                                            <input type="text" name="fecha" id="datepicker" required="required" class="form" placeholder="Fecha Reservación" />
+                                            <input type="text" name="nombre" id="subject" required="required" class="form" placeholder="Persona a Reservar" />
+                                        </div>
 
+                                        <div class="col-lg-6 col-md-6 col-xs-6">  
+                                            <!-- Name -->
+                                          
+                                            <input type="text" name="personas" id="subject" required="required" class="form" placeholder="Numero de Personas" />
+                                              <div class="form-group">
+                         <label for="select" class="col-lg-4 control-label">Seleccionar</label>
+                        <div class="col-lg-6">        
+                        <select name="tipo" class="form-control" id="select">
+               <?php
+		  $con = mysqli_connect('mysql.hostinger.es', 'u365468925_proye', 'paginasweb2015', 'u365468925_proye');
+                
+                  $query = "SELECT * FROM Tipo";
 
-?>
+                  $record = mysqli_query($con,$query);
 
-                        </tbody>    
-                    </table>
-                </div>
+                  while ($dato = mysqli_fetch_array($record)) 
+                  {
+                    echo "<option value='".$dato['idTipo']."'>".$dato['Horario']."</option>";
+                  }
+
+                ?>
+              </select>
+          </div>
             </div>
-            <div class="clearfix visible-lg"></div>
-        </div >
+                                        </div>
+
+                                        <div class="col-xs-12">
+                                            <!-- Send Button -->
+                                            <button type="submit" id="submit" name="submit" class=" form-btn form-btn1 semibold">Reservar</button> 
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
   <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
     <script type="text/javascript" src="js/bootstrap.min.js" ></script>
     <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
@@ -161,10 +153,8 @@
             });
         });
     </script>
-</body>
-</html>
-  
-</body>
+
+ </body>
 </html>
 <?php
 }
